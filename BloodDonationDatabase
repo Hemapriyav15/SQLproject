@@ -1,0 +1,551 @@
+# Creating database
+CREATE DATABASE Blood_Donation;
+# use the database
+USE Blood_Donation;
+# create table for donar table...
+CREATE TABLE Donar_table(
+Donar_id int primary key auto_increment,
+First_name varchar(50) not null,
+Last_name varchar(50) not null,
+Date_of_birth date,
+Gender enum('male','female','other') not null,
+Blood_type enum('A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-') not null,
+Contact_number varchar(50),
+Email varchar(50),
+Address varchar(100),
+City varchar(50),
+State varchar(50),
+Zip_code varchar(50)
+);
+# inserting values donar table..
+INSERT INTO Donar_table (First_name, Last_name, Date_of_birth, Gender, Blood_type,
+Contact_number, Email, Address, City, State, Zip_code) VALUES
+('John', 'Doe', '1985-05-15', 'male', 'O+', '555-1234', 'johndoe@example.com', '123 Main St',
+'Springfield', 'IL', '62701'),
+('Jane', 'Smith', '1990-07-22', 'female', 'A-', '555-5678', 'janesmith@example.com', '456 Elm St',
+'Springfield', 'IL', '62702'),
+('Alice', 'Johnson', '1978-03-11', 'female', 'B+', '555-8765', 'alicejohnson@example.com', '789
+Maple St', 'Springfield', 'IL', '62703'),
+('Bob', 'Williams', '1972-08-22', 'male', 'AB-', '555-2345', 'bobwilliams@example.com', '321 Oak
+St', 'Springfield', 'IL', '62704'),
+('Cathy', 'Brown', '1987-06-05', 'female', 'O-', '555-6789', 'cathybrown@example.com', '654 Pine
+St', 'Springfield', 'IL', '62705'),
+('David', 'Lee', '1992-09-14', 'male', 'A+', '555-4321', 'davidlee@example.com', '987 Birch St',
+'Springfield', 'IL', '62706'),
+('Ella', 'Moore', '1995-12-19', 'female', 'B-', '555-5432', 'ellamoore@example.com', '741 Cedar St',
+'Springfield', 'IL', '62707'),
+('Frank', 'Garcia', '1965-03-30', 'male', 'AB+', '555-6543', 'frankgarcia@example.com', '852 Walnut
+St', 'Springfield', 'IL', '62708'),
+('Grace', 'Martin', '1983-04-23', 'female', 'O+', '555-7654', 'gracemartin@example.com', '963
+Chestnut St', 'Springfield', 'IL', '62709'),
+('Hank', 'Martinez', '1975-01-08', 'male', 'A-', '555-8765', 'hankmartinez@example.com', '159
+Poplar St', 'Springfield', 'IL', '62710'),
+('Ivy', 'Clark', '1991-11-11', 'female', 'B+', '555-9876', 'ivyclark@example.com', '753 Aspen St',
+'Springfield', 'IL', '62711'),
+('Jake', 'Rodriguez', '1986-07-27', 'male', 'O-', '555-0987', 'jakerodriguez@example.com', '456
+Sycamore St', 'Springfield', 'IL', '62712'),
+('Karen', 'Walker', '1993-02-02', 'female', 'A+', '555-1098', 'karenwalker@example.com', '369
+Redwood St', 'Springfield', 'IL', '62713'),
+('Leo', 'Perez', '1989-10-10', 'male', 'B-', '555-2109', 'leoperez@example.com', '258 Hickory St',
+'Springfield', 'IL', '62714'),
+('Mona', 'Young', '1977-08-28', 'female', 'AB-', '555-3210', 'monayoung@example.com', '147
+Willow St', 'Springfield', 'IL', '62715');
+# create table for donation table...
+CREATE TABLE Donation_table(
+Donation_id int Primary key auto_increment,
+Donar_id int not null,
+Date date,
+Blood_volume int,
+Donation_type enum('Whole Blood', 'Platelets', 'Plasma', 'Double Red Cells') not null,
+Status enum('Pending', 'Completed', 'Cancelled') NOT NULL,
+Location_type int
+);
+# inserting values for donation table...
+INSERT INTO Donation_table (Donar_id, Date, Blood_volume, Donation_type, Status,
+Location_type) VALUES
+(1, '2024-07-01', 500, 'Whole Blood', 'Completed', 1),
+(2, '2024-07-10', 250, 'Platelets', 'Completed', 2),
+(3, '2024-07-20', 450, 'Whole Blood', 'Pending', 1),
+(4, '2024-07-22', 500, 'Plasma', 'Completed', 2),
+(5, '2024-07-23', 300, 'Double Red Cells', 'Completed', 1),
+(6, '2024-07-24', 350, 'Whole Blood', 'Cancelled', 2),
+(7, '2024-07-25', 200, 'Platelets', 'Completed', 1),
+(8, '2024-07-26', 400, 'Plasma', 'Pending', 2),
+(9, '2024-07-27', 500, 'Whole Blood', 'Completed', 1),
+(10, '2024-07-28', 450, 'Whole Blood', 'Completed', 2),
+( 11, '2024-07-29', 300, 'Double Red Cells', 'Cancelled', 1),
+(12, '2024-07-30', 250, 'Platelets', 'Completed', 2),
+(13, '2024-07-31', 400, 'Plasma', 'Pending', 1),
+(14, '2024-08-01', 500, 'Whole Blood', 'Completed', 2),
+(15, '2024-08-02', 350, 'Whole Blood', 'Completed', 1);
+# creating table for Recipient table...
+CREATE TABLE Recipient_table(
+Recipient_id int primary key auto_increment,
+First_name varchar(50) not null,
+Last_name varchar(50) not null,
+Date_of_birth date,
+Gender enum('male','female','other') not null,
+Blood_type enum('Whole Blood', 'Platelets', 'Plasma', 'Double Red Cells')
+not null,
+Contact_number varchar(50),
+Email varchar(50),
+Address varchar(50),
+City varchar(50),
+State varchar(50),
+Zip_code varchar(50)
+);
+#inserting values for the recipient table..
+INSERT INTO Recipient_table (First_name, Last_name, Date_of_birth, Gender,
+Blood_type,Contact_number, Email, Address, City, State, Zip_code)
+VALUES
+('Emily', 'Brown', '1988-11-25', 'female', 'O+', '555-4321', 'emilybrown@example.com', '321 Pine
+St', 'Springfield', 'IL', '62704'),
+('Michael', 'Davis', '1982-02-10', 'male', 'A-', '555-8765', 'michaeldavis@example.com', '654 Cedar
+St', 'Springfield', 'IL', '62705'),
+('Sophia', 'White', '1993-03-18', 'female', 'B+', '555-5432', 'sophiawhite@example.com', '987 Oak
+St', 'Springfield', 'IL', '62706'),
+('Liam', 'Harris', '1979-04-05', 'male', 'AB-', '555-6543', 'liamharris@example.com', '123 Walnut
+St', 'Springfield', 'IL', '62707'),
+('Olivia', 'King', '1995-05-29', 'female', 'O-', '555-7654', 'oliviaking@example.com', '456 Chestnut
+St', 'Springfield', 'IL', '62708'),
+('Ethan', 'Scott', '1986-06-10', 'male', 'A+', '555-8765', 'ethanscott@example.com', '789 Birch St',
+'Springfield', 'IL', '62709'),
+('Isabella', 'Green', '1990-07-15', 'female', 'B-', '555-9876', 'isabellagreen@example.com', '321
+Cedar St', 'Springfield', 'IL', '62710'),
+('Noah', 'Adams', '1983-08-23', 'male', 'AB+', '555-0987', 'noahadams@example.com', '654 Pine
+St', 'Springfield', 'IL', '62711'),
+('Mia', 'Baker', '1978-09-07', 'female', 'O+', '555-1098', 'miabaker@example.com', '987 Maple St',
+'Springfield', 'IL', '62712'),
+('Lucas', 'Carter', '1991-10-11', 'male', 'A-', '555-2109', 'lucascarter@example.com', '123 Oak St',
+'Springfield', 'IL', '62713'),
+('Amelia', 'Mitchell', '1992-11-30', 'female', 'B+', '555-3210', 'ameliamitchell@example.com', '456
+Willow St', 'Springfield', 'IL', '62714'),
+('Mason', 'Perez', '1987-12-12', 'male', 'O-', '555-4321', 'masonperez@example.com', '789
+Redwood St', 'Springfield', 'IL', '62715'),
+('Ava', 'Roberts', '1985-01-19', 'female', 'A+', '555-5432', 'avaroberts@example.com', '321 Aspen
+St', 'Springfield', 'IL', '62716'),
+('James', 'Thompson', '1976-02-22', 'male', 'B-', '555-6543', 'jamesthompson@example.com', '654
+Sycamore St', 'Springfield', 'IL', '62717'),
+('Emma', 'Nelson', '1994-03-30', 'female', 'AB-', '555-7654', 'emmanelson@example.com', '987
+Hickory St', 'Springfield', 'IL', '62718');
+# create a table for the Blood inventory table...
+CREATE TABLE Blood_inventory_table(
+Inventory_id int not null,
+Blood_type enum('Whole Blood', 'Platelets', 'Plasma', 'Double Red Cells') not null,
+Location_id int,
+Quantity int,
+Last_updated date not null
+);
+#Inserting values into the blood inventory table....
+INSERT INTO Blood_inventory_table (Inventory_id, Blood_type, Location_id, Quantity,
+Last_updated) VALUES
+(1, 'O+', 1, 1500, '2024-07-25'),
+(2, 'A-', 2, 800, '2024-07-26'),
+(3, 'B+', 1, 1200, '2024-07-27'),
+(4, 'AB-', 2, 700, '2024-07-28'),
+(5, 'O-', 1, 900, '2024-07-29'),
+(6, 'A+', 2, 1100, '2024-07-30'),
+(7, 'B-', 1, 950, '2024-07-31'),
+(8, 'AB+', 2, 850, '2024-08-01'),
+(9, 'O+', 1, 1300, '2024-08-02'),
+(10, 'A-', 2, 750, '2024-08-03'),
+(11, 'B+', 1, 1050, '2024-08-04'),
+(12, 'AB-', 2, 800, '2024-08-05'),
+(13, 'O-', 1, 1000, '2024-08-06'),
+(14, 'A+', 2, 1150, '2024-08-07'),
+(15, 'B-', 1, 900, '2024-08-08');
+# creating a table for a location table...
+CREATE TABLE Location_table(
+Location_id int primary key auto_increment,
+Name varchar(50),
+Address varchar(100),
+City varchar(50),
+State varchar(50),
+Zip_code varchar(50),
+Contact_number varchar(50)
+);
+#Inserting values into loactaion table...
+INSERT INTO Location_table (Name, Address, City, State, Zip_code, Contact_number)
+VALUES
+('Central Blood Bank', '1010 Hospital Rd', 'Springfield', 'IL', '62706', '555-1234'),
+('Northside Donation Center', '2020 North St', 'Springfield', 'IL', '62707', '555-5678'),
+('Eastside Blood Center', '3030 East St', 'Springfield', 'IL', '62708', '555-6789'),
+('Westside Donation Facility', '4040 West Ave', 'Springfield', 'IL', '62709', '555-7890'),
+('Southside Blood Services', '5050 South Rd', 'Springfield', 'IL', '62710', '555-8901'),
+('Downtown Blood Collection', '6060 Center St', 'Springfield', 'IL', '62711', '555-9012'),
+('Uptown Blood Donation', '7070 Uptown Rd', 'Springfield', 'IL', '62712', '555-0123'),
+('Suburban Blood Drive', '8080 Suburban Blvd', 'Springfield', 'IL', '62713', '555-2345'),
+('Metro Blood Center', '9090 Metro Ave', 'Springfield', 'IL', '62714', '555-3456'),
+('Rural Blood Services', '1010 Rural Rd', 'Springfield', 'IL', '62715', '555-4567'),
+('City Center Blood Collection', '1111 City Center', 'Springfield', 'IL', '62716', '555-5678'),
+('Highland Blood Donation', '1212 Highland Dr', 'Springfield', 'IL', '62717', '555-6789'),
+('Greenfield Blood Services', '1313 Greenfield Ln', 'Springfield', 'IL', '62718', '555-7890'),
+('Riverfront Blood Center', '1414 Riverfront Rd', 'Springfield', 'IL', '62719', '555-8901'),
+('Parkside Blood Donation', '1515 Parkside Ave', 'Springfield', 'IL', '62720', '555-9012');
+# creating a table for the Blood request table...
+CREATE TABLE Blood_request_table(
+Request_id int primary key auto_increment,
+Recipient_id int not null,
+Blood_type enum('Whole Blood', 'Platelets', 'Plasma', 'Double Red Cells') not null,
+Quantity int not null,
+Request_date date,
+Status enum('Pending', 'Completed', 'Cancelled') not null,
+Location_id int
+);
+#Inserting values to the blood request table...
+INSERT INTO Blood_request_table (Recipient_id, Blood_type, Quantity, Request_date, Status,
+Location_id) VALUES
+(1, 'O+', 300, '2024-07-28', 'Pending', 1),
+(2, 'A-', 500, '2024-07-29', 'Fulfilled', 2),
+(3, 'B+', 450, '2024-07-30', 'Pending', 3),
+(4, 'AB-', 200, '2024-07-31', 'Cancelled', 4),
+(5, 'O-', 400, '2024-08-01', 'Fulfilled', 5),
+(6, 'A+', 350, '2024-08-02', 'Pending', 6),
+(7, 'B-', 500, '2024-08-03', 'Fulfilled', 7),
+(8, 'AB+', 600, '2024-08-04', 'Pending', 8),
+(9, 'O+', 250, '2024-08-05', 'Fulfilled', 9),
+(10, 'A-', 300, '2024-08-06', 'Pending', 10),
+(11, 'B+', 400, '2024-08-07', 'Fulfilled', 11),
+(12, 'AB-', 450, '2024-08-08', 'Pending', 12),
+(13, 'O-', 350, '2024-08-09', 'Fulfilled', 13),
+(14, 'A+', 500, '2024-08-10', 'Pending', 14),
+(15, 'B-', 600, '2024-08-11', 'Fulfilled', 15);
+# creating a table for the staff table....
+CREATE TABLE Staff_table(
+Staff_id int primary key auto_increment,
+First_name varchar(50),
+Last_name varchar(50),
+Position varchar(50) not null,
+Contact_number varchar(50),
+Email varchar(50),
+Location_id int not null
+);
+#inserting a staff table...
+INSERT INTO Staff_table (First_name, Last_name, Position, Contact_number, Email,
+Location_id) VALUES
+('Sarah', 'Taylor', 'Nurse', '555-6789', 'sarahtaylor@example.com', 1),
+('David', 'Miller', 'Doctor', '555-9876', 'davidmiller@example.com', 2),
+('Laura', 'Anderson', 'Phlebotomist', '555-4321', 'lauraanderson@example.com', 3),
+('Mark', 'Thomas', 'Technician', '555-5432', 'markthomas@example.com', 4),
+('Rachel', 'Jackson', 'Coordinator', '555-6543', 'racheljackson@example.com', 5),
+('Michael', 'Johnson', 'Supervisor', '555-7654', 'michaeljohnson@example.com', 6),
+('Emily', 'White', 'Receptionist', '555-8765', 'emilywhite@example.com', 7),
+('John', 'Lee', 'Manager', '555-9876', 'johnlee@example.com', 8),
+('Samantha', 'Clark', 'Lab Technician', '555-0987', 'samanthaclark@example.com',
+9),
+('Andrew', 'Harris', 'Volunteer Coordinator', '555-1098', 'andrewharris@example.com',
+10),
+('Jessica', 'Davis', 'Nurse', '555-2109', 'jessicadavis@example.com', 11),
+('William', 'Martinez', 'Doctor', '555-3210', 'williammartinez@example.com', 12),
+('Linda', 'Brown', 'Phlebotomist', '555-4321', 'lindabrown@example.com', 13),
+('Thomas', 'Moore', 'Technician', '555-5432', 'thomasmoore@example.com', 14),
+('Karen', 'Garcia', 'Coordinator', '555-6543', 'karengarcia@example.com', 15);
+# creating a table for a donation event table....
+CREATE TABLE Donation_event_table(
+Event_id int primary key auto_increment,
+name varchar(50),
+Date date,
+Start_time time,
+End_time time,
+Location_id int,
+Description text
+);
+#inserting values to the donation event table...
+INSERT INTO Donation_event_table (Name, Date, Start_time, End_time, Location_id,
+Description) VALUES
+('Summer Blood Drive', '2024-08-05', '09:00:00', '15:00:00', 1, 'Join us for our annual summer
+blood drive.'),
+('Holiday Donation Campaign', '2024-12-15', '10:00:00', '16:00:00', 2, 'Help us meet the increased
+holiday demand for blood donations.'),
+('Community Blood Rally', '2024-09-10', '08:00:00', '14:00:00', 3, 'Participate in our community
+rally to support local hospitals.'),
+('School Blood Drive', '2024-10-20', '09:00:00', '13:00:00', 4, 'Encouraging students and staff to
+donate blood.'),
+('Corporate Blood Donation', '2024-11-05', '10:00:00', '17:00:00', 5, 'Corporate partners join hands
+for a noble cause.'),
+('Emergency Blood Camp', '2024-08-15', '07:00:00', '12:00:00', 6, 'Emergency response blood camp
+to support disaster relief.'),
+('Monthly Blood Donation', '2024-09-01', '09:00:00', '15:00:00', 7, 'Monthly drive to ensure regular
+supply of blood.'),
+('New Year Blood Donation', '2025-01-01', '10:00:00', '16:00:00', 8, 'Start the year by saving lives
+through donation.'),
+('Valentine’s Day Blood Drive', '2025-02-14', '11:00:00', '17:00:00', 9, 'Show love by giving the gift
+of life this Valentine\'s Day.'),
+('Spring Festival Blood Drive', '2024-03-21', '08:00:00', '14:00:00', 10, 'Celebrate spring with a
+life-saving donation.'),
+('Halloween Blood Bash', '2024-10-31', '09:00:00', '15:00:00', 11, 'Don\'t let the vampires be the
+only ones taking blood this Halloween!'),
+('Thanksgiving Blood Drive', '2024-11-28', '08:00:00', '14:00:00', 12, 'Give thanks by giving blood
+this Thanksgiving.'),
+('Youth Blood Camp', '2024-07-30', '09:00:00', '15:00:00', 13, 'Youth-led blood donation camp.'),
+('Independence Day Blood Drive', '2025-07-04', '09:00:00', '15:00:00', 14, 'Celebrate freedom by
+giving life.'),
+('Labor Day Blood Donation', '2024-09-02', '08:00:00', '14:00:00', 15, 'Honor Labor Day by
+donating blood.');
+ENTITY RELATIONSHIP DIAGRAM
+Altering table name for Donar_table to Donar
+ALTER TABLE Donar_table
+RENAME Donar;
+SELECT * FROM Donar;
+TCL(Transaction Control Language) COMMANDS..
+Selecting specific or wanted column from the table.
+SELECT Donation_id,Donation_type,Status
+FROM Donation_table ;
+Selecting all record from the different tables OR specific tables
+SELECT * FROM Donar_table;
+SELECT * FROM Donation_table;
+SELECT * FROM Recipient_table;
+SELECT * FROM Blood_inventory_table;
+SELECT * FROM Staff_table;
+SELECT * FROM Location_table;
+SELECT * FROM Donation_event_table;
+SELECT * FROM Blood_request_table;
+SQL CONSTRAINTS..
+Constraints are used while creating a table if
+★ Not Null
+Definition: Ensures a column cannot have empty values.
+Purpose: Requires that a value must be entered in the column.
+CREATE TABLE Donar_table(
+Donar_id int primary key auto_increment,
+First_name varchar(50) not null,
+Last_name varchar(50) not null,
+Date_of_birth date,
+Gender enum('male','female','other') not null,
+Blood_type enum('A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-') not null,
+Contact_number varchar(50),
+Email varchar(50),
+Address varchar(100),
+City varchar(50),
+State varchar(50),
+Zip_code varchar(50)
+);
+While creating a Donar table not null constraint is used
+★ Unique
+Definition: Ensures all values in a column are different.
+Purpose: Prevents duplicate entries in a column.
+★ Primary key
+Definition: A unique identifier for each record in a table.
+Purpose: Ensures no duplicate rows in the table.
+CREATE TABLE Location_table(
+Location_id int primary key auto_increment,
+Name varchar(50),
+Address varchar(100),
+City varchar(50),
+State varchar(50),
+Zip_code varchar(50),
+Contact_number varchar(50)
+);
+★ Foreign key
+Definition: A reference to a primary key in another table.
+Purpose: Links tables together to maintain relationships.
+★ Check
+Definition: Restricts the values that can be placed in a column.
+Purpose: Validates data against a specific condition.
+★ Default
+Definition: Assigns a default value to a column when no value is provided.
+Purpose: Automatically fills in a value when none is supplied.
+Modifying column
+ALTER TABLE Blood_request_table
+MODIFY Quantity int
+AFTER Status;
+select * from Blood_request_table;
+Auto Increment..
+CREATE TABLE Staff_table(
+Staff_id int primary key auto_increment,
+First_name varchar(50),
+Last_name varchar(50),
+Position varchar(50) not null,
+Contact_number varchar(50),
+Email varchar(50),
+Location_id int not null
+);
+AUTOCOMMIT, COMMIT, ROLLBACK
+#You decide to stop auto saving so you can make multiple edits before deciding to save.
+SET AUTOCOMMIT = OFF;
+#You have made some initial edits and, satisfied with the changes, you decide to save the report
+COMMIT;
+#You delete a large section from your report, unsure if it's needed.
+DELETE FROM Staff_table;
+#You review the report to see the changes.
+SELECT * FROM Staff_table;
+#You decide the deletion was a mistake, so you undo it and return to the previously saved version of the
+report.
+ROLLBACK;
+In a database context, these steps allow you to manage changes carefully and only save the changes you
+want to keep.
+Joins..
+SELECT L.Name,L.Address,L.city,S.Position,S.Email
+FROM Location_table L
+join Staff_table S
+ON L.Location_id=S.Location_id
+LIMIT 5;
+Inner Join
+select DE.Event_id,DE.name,DE.Location_id,D.Donation_type,D.Status
+from Donation_event_table DE
+inner join Donation_table D
+on DE.Date=D.Date;
+Functions..
+➔ Count()
+select count(city) as Total_cities
+from Donar;
+➔ Sum()
+select Sum(Quantity)
+from Blood_inventory_table;
+➔ Max()
+select MAX(Quantity) AS Maximum
+from Blood_inventory_table ;
+➔ Min()
+select MIN(Quantity) AS Minimum
+from Blood_inventory_table ;
+➔ Avg()
+select AVG(Quantity) AS Average
+from Blood_inventory_table ;
+➔ Concat()
+select concat(First_name,' ',Last_name) as Full_name
+from Donar
+limit 5;
+Logical Operators in sql
+And
+select Recipient_id,Blood_type,Request_date
+from Blood_request_table
+where Request_date = '2024-07-28' AND Blood_type = "Whole Blood";
+Or
+select Recipient_id,Blood_type,Request_date
+from Blood_request_table
+where Blood_type = "Whole Blood" OR Blood_type="Platelets";
+Not
+select Recipient_id,Blood_type,Request_date
+from Blood_request_table
+where NOT Blood_type = "Whole Blood" and NOT Blood_type = "Platelets";
+Between
+SELECT Request_date from Blood_request_table
+where Request_date BETWEEN '2024-07-29' AND '2024-08-01';
+In
+select Donar_id,Donation_type
+from Donation_table
+where Donation_type in ('Whole Blood','Platelets','Plasma');
+Wild card..
+Like:
+SELECT name FROM Donation_event_table
+WHERE name LIKE "%Blood%";
+Ends with z
+select Last_name from Donar
+where Last_name like '%z';
+Starts with J
+Select First_name from Donar
+where First_name like 'J%';
+SELECT * FROM Blood_inventory_table
+where Last_updated like '____-07-26';
+Orderby
+select Staff_id, position
+from Staff_table
+order by Position desc;
+Limit
+select Staff_id, position
+from Staff_table
+order by Position ASC
+LIMIT 5;
+Union
+SELECT First_name ,Last_name [Note:While using union the number of column should be same number of columns]
+from Donar
+union
+SELECT First_name,Last_name
+from Recipient_table;
+Union all
+SELECT First_name ,Last_name
+from Donar
+union all
+SELECT First_name,Last_name
+from Recipient_table;
+Self joins..
+select * from Staff_table as A
+inner join Staff_table as B
+ON A.Location_id=B.Location_id
+Views
+create view Blood_views as
+select First_name,Last_name
+from Staff_table;
+select * from Blood_views;
+Indexes
+show indexes from Donar;
+create index Last_indx
+on Donar(Last_name);
+create index First_indx
+on Donar (Donar_id,First_name);
+show indexes from Donar;
+SubQuery
+select Donar_id,Blood_volume,
+(SELECT AVG(Blood_volume) from Donation_table) as AvgBlood
+from Donation_table;
+Select Donar_id,Blood_volume
+FROM Donation_table
+where Blood_volume IN(select Blood_volume
+from Donation_table
+where Blood_volume>250);
+Aggregate Functions
+SELECT max(Quantity),Request_date
+FROM Blood_request_table
+group by Request_date;
+SELECT count(Quantity),Blood_type
+FROM Blood_request_table
+group by Blood_type
+having count(Quantity) >3;
+Rollup
+select count(Quantity),Blood_type
+from Blood_inventory_table
+group by Blood_type with rollup;
+Delete
+select * from Staff_table;
+delete from Staff_table
+where Staff_id=3;
+Delimiter
+delimiter $$
+create procedure get_blood()
+begin
+select * from Donar;
+end $$
+delimiter ;
+call get_blood()
+This code creates a stored procedure named get_blood() that, when called, retrieves all records
+from the Donar table. The delimiter is temporarily changed to $$ to allow for multi-line code
+within the procedure. After defining the procedure, the delimiter is reset to ; Finally, call
+get_blood() is used to execute the procedure.
+Case in sql
+SELECT Quantity,
+CASE
+WHEN Quantity > 1500 THEN 'Sufficient amt Blood'
+WHEN Quantity > 1000 THEN 'Maximum amt Blood'
+WHEN Quantity > 500 THEN 'Minimum amt Blood'
+ELSE 'Unsufficient Blood'
+END AS Blood_Bank
+FROM Blood_inventory_table;
+Window Function
+SELECT * FROM Donation_event_table;
+select DE.Location_id,Date,
+count(Location_id) over() as Count
+from Donation_event_table DE;
+select DE.Location_id,name,
+max(Location_id) over(partition by name )
+from Donation_event_table DE;
+Row_number()
+select * from Blood_request_table;
+select Recipient_id,Blood_type, Status ,row_number()
+over(partition by Status order by Status) as RowNumber
+from Blood_request_table;
+Dense_rank()
+SELECT * FROM Staff_table;
+SELECT *FROM (select S.*,dense_rank()
+over(partition by Position) as newpos from Staff_table S) A
+WHERE Location_id < 5;
+Dense_rank()
+select * from Blood_inventory_table;
+select * ,rank() over(partition by Blood_type order by Location_id) as rnk
+from Blood_inventory_table;
+Lag()
+select * ,lag(Location_id) over(partition by Blood_type order by Location_id) as
+previous_LocationId
+from Blood_inventory_table;
+Lead()
+SELECT * FROM Blood_request_table;
+select * , lead(Blood_type) over(partition by Quantity order by Location_id) as next_blood_type
+from Blood_request_table
